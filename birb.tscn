@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djecfjb5wt7sf"]
+
+[ext_resource type="Texture2D" uid="uid://c0jdl263j0x1k" path="res://art/Bird.png" id="1_buorm"]
+[ext_resource type="Script" uid="uid://cmrn870gf4oa5" path="res://Birb.cs" id="1_s8u3n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ka2fx"]
+radius = 54.00926
+
+[node name="Birb" type="CharacterBody2D" unique_id=1642301708]
+script = ExtResource("1_s8u3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1497803053]
+texture = ExtResource("1_buorm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231565914]
+position = Vector2(-5, -3)
+shape = SubResource("CircleShape2D_ka2fx")
