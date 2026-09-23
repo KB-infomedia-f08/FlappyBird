@@ -4,14 +4,34 @@
 [ext_resource type="Script" uid="uid://bkcsgnqkuskx7" path="res://Game.cs" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cbs04vdwdtegc" path="res://pipe.tscn" id="2_feb5d"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka2fx"]
+size = Vector2(720, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26pqo"]
+size = Vector2(704, 23)
+
 [node name="Game" type="Node2D" unique_id=477227642]
 script = ExtResource("1_feb5d")
+pipePackedScene = ExtResource("2_feb5d")
 
 [node name="Birb" parent="." unique_id=1642301708 instance=ExtResource("1_e2o6t")]
 position = Vector2(108, 487)
 
 [node name="Pipe" parent="." unique_id=79145975 instance=ExtResource("2_feb5d")]
 position = Vector2(605, 490)
+
+[node name="DeathArea" type="Area2D" parent="." unique_id=1482306672]
+position = Vector2(108, 487)
+
+[node name="SkyShape" type="CollisionShape2D" parent="DeathArea" unique_id=85633253]
+position = Vector2(239, -500.5)
+shape = SubResource("RectangleShape2D_ka2fx")
+debug_color = Color(0.9800376, 0, 0.3869787, 0.41960785)
+
+[node name="GroundShape" type="CollisionShape2D" parent="DeathArea" unique_id=1443933791]
+position = Vector2(245, 509.5)
+shape = SubResource("RectangleShape2D_26pqo")
+debug_color = Color(0.98708326, 0, 0.3217387, 0.41960785)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1144720564]
 
@@ -27,4 +47,13 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
 text = "0"
 
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1979461723]
+wait_time = 2.0
+autostart = true
+
+[node name="PipeSpawnPoint" type="Marker2D" parent="." unique_id=670528662]
+position = Vector2(880, 500)
+
+[connection signal="Death" from="Birb" to="." method="OnBirbDeath"]
 [connection signal="Score" from="Pipe" to="." method="UpdateScore"]
+[connection signal="timeout" from="SpawnTimer" to="." method="OnSpawnTimerTimeout"]

@@ -3,16 +3,8 @@ using System;
 
 public partial class Birb : CharacterBody2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
+	[Signal]
+	public delegate void DeathEventHandler();
 	public override void _PhysicsProcess(double delta)
 	{
 		var mVelocity = Velocity;
@@ -28,5 +20,21 @@ public partial class Birb : CharacterBody2D
 
 		Velocity = mVelocity;
 		MoveAndSlide();
+	}
+
+	public void OnBodyEnterd(Node2D body)
+	{
+		if(body is Pipe)
+		{
+			EmitSignal(SignalName.Death);
+		}
+	}
+
+	public void OnAreaEntered(Area2D area)
+	{
+		if(area.Name == "DeathArea")
+		{
+			EmitSignal(SignalName.Death);
+		}
 	}
 }

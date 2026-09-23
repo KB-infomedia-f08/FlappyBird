@@ -6,6 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ka2fx"]
 radius = 54.00926
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_26pqo"]
+radius = 52.086468
+
 [node name="Birb" type="CharacterBody2D" unique_id=1642301708]
 script = ExtResource("1_s8u3n")
 
@@ -15,3 +18,13 @@ texture = ExtResource("1_buorm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231565914]
 position = Vector2(-5, -3)
 shape = SubResource("CircleShape2D_ka2fx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2109691866]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1598371942]
+position = Vector2(-5, -3)
+shape = SubResource("CircleShape2D_26pqo")
+debug_color = Color(0.9782353, 0.081357874, 0.31944826, 0.41960785)
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEnterd"]
