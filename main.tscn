@@ -1,7 +1,34 @@
 [gd_scene format=3 uid="uid://bwmiq5fxsjnjw"]
 
+[ext_resource type="Texture2D" uid="uid://daamatxf5nlxu" path="res://art/Sky.png" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://crgtlupevunrp" path="res://game.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cf8npr8fk52fb" path="res://art/ground.png" id="2_h2yge"]
 
 [node name="Main" type="Node" unique_id=831642256]
+process_mode = 3
+
+[node name="Background" type="Node2D" parent="." unique_id=1601480555]
+
+[node name="Sky" type="Parallax2D" parent="Background" unique_id=916903378]
+scroll_offset = Vector2(700, 500)
+repeat_size = Vector2(1400, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky" unique_id=1680154455]
+texture = ExtResource("1_0xm2m")
+
+[node name="Ground" type="Parallax2D" parent="Background" unique_id=376061064]
+scroll_offset = Vector2(350, 1000)
+repeat_size = Vector2(700, 0)
+autoscroll = Vector2(-200, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ground" unique_id=830646381]
+texture = ExtResource("2_h2yge")
 
 [node name="Game" parent="." unique_id=477227642 instance=ExtResource("1_ig7tw")]
+process_mode = 1
+
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1941793256]
+process_mode = 2
